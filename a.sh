@@ -167,18 +167,18 @@ echo 'compleasm done'
 #### mapping rate
 > XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount
 srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' E1_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' E1_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' E2_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' E2_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' XT1_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' XT1_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' XT2_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
-srun -N 1 -n 1 -c 8 awk 'END{print "E1_0\t"NR}' XT2_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "E1_1\t"NR}' E1_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "E2_0\t"NR}' E2_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "E2_1\t"NR}' E2_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "XT1_0\t"NR}' XT1_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "XT1_1\t"NR}' XT1_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "XT2_0\t"NR}' XT2_0.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
+srun -N 1 -n 1 -c 8 awk 'END{print "XT2_1\t"NR}' XT2_1.ccs.fastq.readlength >> XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount &
 wait
 
 
 >XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.readcount
-for i in XT1_1 XT1_0 XT2_1 XT2_0
+for r in XT1_1 XT1_0 XT2_1 XT2_0
 do
 	inbam=$r.ccs.fq.dm6.F4.s.bam
 
@@ -187,5 +187,4 @@ do
 done
 
 awk '{if(NR == FNR){all[$1] = $2} else{if($1 in all){rate = $2 / all[$i]; print $1"\t"$2"\t"all[$i]"\t"rate}}}' XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.readcount > XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.rate
-
 
