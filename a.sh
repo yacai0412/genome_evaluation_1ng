@@ -186,5 +186,5 @@ do
 
 done
 
-awk '{if(NR == FNR){all[$1] = $2} else{if($1 in all){rate = $2 / all[$i]; print $1"\t"$2"\t"all[$i]"\t"rate}}}' XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.readcount > XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.rate
+awk '{if(NR == FNR){all[$1] = $2} else{if($1 in all){rate = $2 / all[$1]; print $1"\t"$2"\t"all[$1]"\t"rate}}}' XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.readcount XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.readcount > XT1_XT2_1_0.E1_E2_1_0.PTA.ccs.fastq.mapping.rate
 
