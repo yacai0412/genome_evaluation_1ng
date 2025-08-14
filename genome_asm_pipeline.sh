@@ -1,18 +1,18 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -n 1
-# #SBATCH -c 32
+#SBATCH -c 32
 # #SBATCH -J selfmap
-# #SBATCH -o selfmap_%x_%j.out
-# #SBATCH -e selfmap_%x_%j.err
+#SBATCH -o selfmap_%x_%j.out
+#SBATCH -e selfmap_%x_%j.err
+
 
 
 
 source ~/.bashrc
-# for r in A1_05 A1_0125 A2_05 A2_0125
 
 fastq=$1   # $r.palindrome_treated.fq.gz
-threads=$2
+threads=32
 
 fastq_prefix=$(basename "$fastq") 
 fastq_prefix=${fastq_prefix%.fastq.gz}
@@ -22,7 +22,7 @@ fastq_prefix=${fastq_prefix%.fa.gz}
 fastq_prefix=${fastq_prefix%.fastq}
 fastq_prefix=${fastq_prefix%.fasta}
 fastq_prefix=${fastq_prefix%.fq}
-fastq_prefix=${fastq_prefix%.fa} # $r.palindrome_treated
+fastq_prefix=${fastq_prefix%.fa} # $r.ccs
 
 asm_prefix=$fastq_prefix.asm
 
